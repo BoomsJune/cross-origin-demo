@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Frontend</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+
+    <div>from demo-jsonp.html: Some unimportant Content</div>
+
+    <script>
+        jsonpJS();
+        // jsonpJquery();
+
+
+        // 原生js
+        function jsonpJS(){
+            var script = document.createElement("script");
+            script.type = "text/javascript";
+            script.src = "http://192.168.1.4:5000/api/jsonp/data?callback=jsonWithPadding";
+
+            document.head.appendChild(script);
+            
+            // 回调函数
+            function jsonWithPadding(res){
+                console.log(res);
+            }
+        }
+
+        // jquery支持jsonp
+        function jsonpJquery(){
+            $.ajax({
+                url:'http://192.168.1.4:5000/api/jsonp/data',
+                type:"GET",
+                dataType:"jsonp",
+                jsonpCallback: "callback",  // 默认参数为callback
+                success:function(data){
+                    console.log(data);
+                },
+            });
+        }
+            
+
+    </script>
+
+</body>
+
+</html>

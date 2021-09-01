@@ -1,0 +1,10 @@
+# ide
+.vscode/
+.idea/
+
+# python
+__pycache__/
+venv/
+
+# package
+node_modules/
